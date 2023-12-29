@@ -93,30 +93,70 @@
            del.addEventListener("click",()=>{
             del.parentElement.remove()
            })
-
-        //    let alldivs=document.querySelectorAll(".div")
-        //    let arr =[]
-        //    alldivs.forEach((li)=>{
-        //    arr.push(inp.value)
-        //    window.localStorage.setItem("arr",arr)
-        //    console.log(arr);
-        //        })
-        
          inp.value=""
-    let v = document.querySelectorAll(".tasks .div")
-        v.forEach((li)=>{
-            let arr =[];
-            arr.push(v)
-        window.localStorage.setItem("xs",v)
-        // console.log(arr);
-        })
-        console.log(v);
+        // let v = document.querySelectorAll(".tasks .div")
+        //     v.forEach((li)=>{
+        //         let arr =[];
+        //         arr.push(v)
+        //     window.localStorage.setItem("xs",v)
+        //     // console.log(arr);
+        //     })
+        //     console.log(v);
         
+        //         let arr =[];
+        //         for (let i = 0; i < document.querySelectorAll(".tasks .div").length; i++) {
+        //         let v = document.querySelectorAll(".tasks .div")[i]
+        //         arr.push(v)
+        //         window.localStorage.setItem("xs",arr)
+        //         // console.log(v);
+        //         console.log(arr[i].innerHTML);
+        //         }
+        //         console.log(arr);
+        // }
+                
+                let arr =[];
+                for (let i = 0; i < document.querySelectorAll(".tasks .div").length; i++) {
+                let v = document.querySelectorAll(".tasks .div")[i]
+                arr.push(v.innerHTML)
+                window.localStorage.setItem("xs",arr)
+                // console.log(v);
+                // console.log(arr[i].innerHTML);
+                }
+                // console.log(arr);
         }
     })
     if (window.localStorage.getItem("xs")) {
-     console.log(window.localStorage.getItem("xs"));
+         let div = document.createElement("div")
+            div.classList.add("div")
+            let del = document.createElement("button")
+            del.innerHTML=`delete`
+            div.style.cssText=`
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            overflow:scroll;
+            background-color:white;
+            padding: 10px;
+            border-radius: 5px;
+            width: 500px;
+            margin: 20px auto;
+            font-size:20px;
+            font-family:arial;
+            `
+            del.style.cssText=`
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            margin: 5px;
+            padding: 10px;
+            font-size:20px;
+            `
+           div.innerHTML=window.localStorage.getItem("xs")
+           div.appendChild(del)
+           tasks.appendChild(div)
     }
+    // window.localStorage.clear()
 
     </script>
 </body>
