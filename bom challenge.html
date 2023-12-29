@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bom challenge</title>
+    <style>
+        .form{
+            background-color: #eee;
+            margin: 20px auto;
+            width: 600px;
+            display: flex;
+            justify-content: center;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .input{
+            background-color: white;
+            border: none;
+            padding: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: none;
+            margin: 5px;
+            font-size: 20px;
+        }
+        input[type="text"]:focus{
+            outline: none;
+        }
+        .add{
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .tasks{
+            background-color: #eee;
+            padding: 20px;
+            border-radius: 5px;
+            width: 600px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <input type="text" class="input" placeholder="hello">
+        <input type="submit" class="add" value="Add Task">
+    </div>
+    <div class="tasks"></div>
+    <script>
+        let btn = document.querySelector(".add")
+        let inp = document.querySelector(".input")
+        let tasks = document.querySelector(".tasks")
+        btn.addEventListener("click",()=>{
+            if (document.querySelector(".input").value != "") {
+            let div = document.createElement("div")
+            div.classList.add("div")
+            let del = document.createElement("button")
+            del.innerHTML=`delete`
+            div.style.cssText=`
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            overflow:scroll;
+            background-color:white;
+            padding: 10px;
+            border-radius: 5px;
+            width: 500px;
+            margin: 20px auto;
+            font-size:20px;
+            font-family:arial;
+            `
+            del.style.cssText=`
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            margin: 5px;
+            padding: 10px;
+            font-size:20px;
+            `
+           div.innerHTML=inp.value
+           div.appendChild(del)
+           tasks.appendChild(div)
+           del.id="hi"
+
+           let divs = document.querySelectorAll("#hi") 
+           del.addEventListener("click",()=>{
+            del.parentElement.remove()
+           })
+
+          //    window.localStorage.setItem("hello",y.split(" "))
+        //    let alldivs=document.querySelectorAll(".div")
+        //     alldivs.forEach((li)=>{
+        //         let arr = [];
+        //         arr.push(inp.value)
+        //        for (let i = 0; i < arr.length; i++) {
+        //         let = arr[i]
+        //         window.localStorage.setItem("divs", arr) 
+        //        }
+        //     })
+
+
+        //    let alldivs=document.querySelectorAll(".div")
+        //    let arr =[]
+        //    alldivs.forEach((li)=>{
+        //    arr.push(inp.value)
+        //    window.localStorage.setItem("arr",arr)
+        //    console.log(arr);
+        //        })
+        
+         inp.value=""
+    let v = document.querySelectorAll(".tasks .div")
+        v.forEach((li)=>{
+            let arr =[];
+            arr.push(v)
+        window.localStorage.setItem("xs",v)
+        // console.log(arr);
+        })
+        console.log(v);
+        
+        }
+    })
+    if (window.localStorage.getItem("xs")) {
+     console.log(window.localStorage.getItem("xs"));
+    }
+
+    </script>
+</body>
+</html>
