@@ -56,6 +56,7 @@
         let btn = document.querySelector(".add")
         let inp = document.querySelector(".input")
         let tasks = document.querySelector(".tasks")
+        let div = document.createElement("div")
         btn.addEventListener("click",()=>{
             if (document.querySelector(".input").value != "") {
             let div = document.createElement("div")
@@ -84,7 +85,7 @@
             padding: 10px;
             font-size:20px;
             `
-           div.innerHTML=inp.value
+           div.innerHTML=`<div>${inp.value}</div>`
            div.appendChild(del)
            tasks.appendChild(div)
            del.id="hi"
@@ -94,55 +95,37 @@
             del.parentElement.remove()
            })
          inp.value=""
-        // let v = document.querySelectorAll(".tasks .div")
-        //     v.forEach((li)=>{
-        //         let arr =[];
-        //         arr.push(v)
-        //     window.localStorage.setItem("xs",v)
-        //     // console.log(arr);
-        //     })
-        //     console.log(v);
-        
-        //         let arr =[];
-        //         for (let i = 0; i < document.querySelectorAll(".tasks .div").length; i++) {
-        //         let v = document.querySelectorAll(".tasks .div")[i]
-        //         arr.push(v)
-        //         window.localStorage.setItem("xs",arr)
-        //         // console.log(v);
-        //         console.log(arr[i].innerHTML);
-        //         }
-        //         console.log(arr);
-        // }
+
                 
                 let arr =[];
-                for (let i = 0; i < document.querySelectorAll(".tasks .div").length; i++) {
+                for (let i = 0; i < document.querySelectorAll(".tasks .div").length +1; i++) {
                 let v = document.querySelectorAll(".tasks .div")[i]
-                arr.push(v.innerHTML)
-                window.localStorage.setItem("xs",arr)
-                // console.log(v);
-                // console.log(arr[i].innerHTML);
+                        arr.push(v.innerHTML)
+                          window.localStorage.setItem(`m${i}`,arr[i]) 
+
                 }
-                // console.log(arr);
+      
+
         }
     })
-    if (window.localStorage.getItem("xs")) {
-         let div = document.createElement("div")
+
+        for (let i = 0; i < document.querySelectorAll(".tasks .div").length; i++) {
             div.classList.add("div")
-            let del = document.createElement("button")
-            del.innerHTML=`delete`
             div.style.cssText=`
             display:flex;
-            justify-content:space-between;
             align-items:center;
-            overflow:scroll;
-            background-color:white;
             padding: 10px;
+            background-color: white;
             border-radius: 5px;
             width: 500px;
             margin: 20px auto;
             font-size:20px;
             font-family:arial;
+            overflow:scroll;
             `
+            
+            let del = document.createElement("button")
+            del.innerHTML=`delete`
             del.style.cssText=`
             background-color: red;
             color: white;
@@ -152,9 +135,43 @@
             padding: 10px;
             font-size:20px;
             `
-           div.innerHTML=window.localStorage.getItem("xs")
-           div.appendChild(del)
+            
+            
+            div.innerHTML=window.localStorage.getItem(`m${i}`)
+            div.appendChild(del)
            tasks.appendChild(div)
+           
+
+        
+    }
+
+    for (let i = 0; i < 8; i++) {
+       let fix = document.createElement("div")
+       fix.innerHTML= window.localStorage.getItem(`m${i}`)
+       tasks.appendChild(fix)
+       fix.style.cssText=`
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            width: 500px;
+            margin: 20px auto;
+            font-size:20px;
+            font-family:arial;
+            overflow:scroll;
+            `
+            let deldivs =   document.querySelectorAll("div #hi")
+            deldivs.forEach((li)=>{
+            li.addEventListener("click",(e)=>{
+            e.currentTarget.parentElement.remove()
+            window.localStorage.removeItem(`m${i}`)
+            })
+        })
+        if (!window.localStorage.getItem(`m${i}`)) {
+            tasks.removeChild(fix)
+        }
     }
     // window.localStorage.clear()
 
